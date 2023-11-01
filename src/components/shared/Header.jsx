@@ -9,7 +9,7 @@ const Header = () => {
   const { show, setShow, nodeRef } = useClickOutSide();
   return (
     <div
-      className="w-full h-[60px] flex items-center flex-row px-12 bg-[#2B6777]  gap-12 absolute"
+      className="w-full h-[60px] flex items-center flex-row px-12 bg-[#2B6777]  gap-12  fixed top-0 z-50"
       ref={nodeRef}
     >
       <div className="w-[87px] h-[48.578px]">
