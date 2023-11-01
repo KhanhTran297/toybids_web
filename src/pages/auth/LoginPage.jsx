@@ -5,7 +5,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <Button type="default" onClick={() => navigate("/admin/account")}>
+      <Button type="default" onClick={() => navigate("/home")}>
         Login
       </Button>
     </div>

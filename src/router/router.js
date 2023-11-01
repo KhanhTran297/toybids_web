@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import cmsRoutes from "./cmsRoute";
 import authRoutes from "./authRoute";
+import mainRoutes from "./mainRoute";
 const initRoutes = () => {
   // Create routes array
   const routes = [];
@@ -10,6 +11,7 @@ const initRoutes = () => {
 
   cmsRoutes(routes);
   authRoutes(routes);
+  mainRoutes(routes);
   // Sau thực thi xong 2 hàm trên thì routes sẽ là mảng gồm
   // [{path:'/' element:... }, {path::'/' element: ...}]
   // Lần lượt với thứ tự ở trên là authRoutes trước rồi tới mainRoutes
