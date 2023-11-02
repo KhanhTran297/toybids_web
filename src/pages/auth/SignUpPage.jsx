@@ -1,7 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-
-const LoginPage = () => {
+const SignUpPage = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -10,12 +9,11 @@ const LoginPage = () => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div className=" w-[500px] h-[600px] flex flex-col rounded-[49px] pl-10 pr-10 pt-6 pb-6  bg-[#F6FBF9] ">
+    <div className=" w-[500px] h-[600px] flex flex-col rounded-[49px] pl-10 pr-10 pt-6 pb-6  bg-[#F6FBF9] justify-between ">
       <div className=" flex flex-col justify-center items-center gap-2">
-        <p className=" text-[30px] font-bold ">Sign in</p>
-        <p className=" text-sm font-normal">Welcome to our community !</p>
+        <p className=" text-[30px] font-bold ">Create an Account</p>
       </div>
-      <div className=" flex flex-col justify-center items-center  h-[400px] ">
+      <div className=" flex flex-col justify-center items-center  h-[400px]  ">
         <Form
           name="basic"
           layout="vertical"
@@ -54,6 +52,18 @@ const LoginPage = () => {
           >
             <Input.Password size="large" />
           </Form.Item>
+          <Form.Item
+            label="Retype Password"
+            name="confirmpassword"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+            ]}
+          >
+            <Input.Password size="large" />
+          </Form.Item>
 
           <Form.Item className=" flex justify-center items-center w-full">
             <Button
@@ -61,7 +71,7 @@ const LoginPage = () => {
               htmlType="submit"
               className=" bg-[#8FD1D1] rounded-[24px] w-[300px] h-[60px] text-white font-medium text-xl"
             >
-              Sign in
+              Create Account
             </Button>
           </Form.Item>
         </Form>
@@ -69,18 +79,17 @@ const LoginPage = () => {
       <div className=" flex justify-center items-center">
         <p className=" text-sm font-normal">
           {" "}
-          Don't have an account ?{" "}
+          Already have an account ?{" "}
           <span
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/")}
             className=" hover:text-blue-400 cursor-pointer"
           >
-            Sign Up
+            Sign in
           </span>{" "}
-          now
         </p>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
