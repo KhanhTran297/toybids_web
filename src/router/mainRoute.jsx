@@ -1,6 +1,7 @@
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/main/HomePage";
 import ProductDetailPage from "../pages/main/ProductDetailPage";
+import CheckOutPage from "../pages/main/CheckoutPage";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -17,6 +18,10 @@ export default function init(routes) {
         path: "productdetail",
         element: <ProductDetailPage />,
       },
+      {
+        path: "checkout",
+        element: <CheckOutPage></CheckOutPage>
+      }
     ],
   };
 
