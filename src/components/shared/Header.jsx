@@ -1,10 +1,9 @@
-import React from "react";
 import { ILocalSearch } from "../svg/search";
 import Avt from "./Avt";
 import { ILocalNotification } from "../svg/notification";
 import useClickOutSide from "../../hook/useClickOutSide";
 import { UserOption } from "./UserOption";
-
+import Logo from "../../assets/logo.png";
 const Header = () => {
   const { show, setShow, nodeRef } = useClickOutSide();
   return (
@@ -13,7 +12,7 @@ const Header = () => {
       ref={nodeRef}
     >
       <div className="w-[87px] h-[48.578px]">
-        <img src="" alt="" className="w-[87px] h-[48.578px]" />
+        <img src={Logo} alt="" className="w-[87px] h-[48.578px]" />
       </div>
       <div className="flex flex-row items-center h-full ">
         <button className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg">
