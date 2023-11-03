@@ -3,6 +3,7 @@ import Product from "../../components/product/Product";
 import ProductDetail from "../../components/product/ProductDetail";
 import PrestigeBuyer from "../../components/product/PrestigeBuyer";
 
+
 const ProductDetailPage = () => {
   return (
     <div className="pt-[70px] w-full items-center justify-center flex flex-col gap-6">
