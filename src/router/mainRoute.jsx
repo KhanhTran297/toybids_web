@@ -1,4 +1,5 @@
 import MainLayout from "../layout/MainLayout";
+import AddProductPage from "../pages/main/AddProductPage";
 import HomePage from "../pages/main/HomePage";
 import ProductDetailPage from "../pages/main/ProductDetailPage";
 
@@ -17,6 +18,10 @@ export default function init(routes) {
         path: "productdetail",
         element: <ProductDetailPage />,
       },
+      {
+        path:"addproduct",
+        element:<AddProductPage/>,
+      }
     ],
   };
 
