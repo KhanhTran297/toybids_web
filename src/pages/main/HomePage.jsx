@@ -1,10 +1,11 @@
-import React from "react";
-import Home from "../../components/home/Home";
+import LeftSide from "../../components/home/LeftSide";
+import RightSide from "../../components/home/RightSide";
 
 const HomePage = () => {
   return (
-    <div>
-      <Home />
+    <div className=" w-full mt-[60px]  grid grid-flow-col grid-cols-[15%_85%]">
+      <LeftSide />
+      <RightSide />
     </div>
   );
 };
