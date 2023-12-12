@@ -3,25 +3,37 @@ import Avt from "./Avt";
 import { ILocalNotification } from "../svg/notification";
 import useClickOutSide from "../../hook/useClickOutSide";
 import { UserOption } from "./UserOption";
+
+import { useNavigate } from "react-router-dom";
+
+
 import Logo from "../../assets/logo.png";
+
 const Header = () => {
   const { show, setShow, nodeRef } = useClickOutSide();
+  const navigate = useNavigate();
   return (
     <div
-      className="w-full h-[60px] flex items-center flex-row px-12 bg-[#2B6777]  gap-12  fixed top-0 z-50"
+      className="w-full h-[90px] flex items-center flex-row px-12 bg-[#2B6777]  gap-12  fixed top-0 z-50"
       ref={nodeRef}
     >
       <div className="w-[87px] h-[48.578px]">
         <img src={Logo} alt="" className="w-[87px] h-[48.578px]" />
       </div>
       <div className="flex flex-row items-center h-full ">
-        <button className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg">
+        <button
+          className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg"
+          onClick={() => navigate("/home")}
+        >
           Home
         </button>
         <button className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg">
           Sale
         </button>
-        <button className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg">
+        <button
+          className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg"
+          onClick={() => navigate("/aboutus")}
+        >
           About Us
         </button>
       </div>

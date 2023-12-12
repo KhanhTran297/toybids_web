@@ -1,4 +1,5 @@
 import React from "react";
+
 import Product from "../../components/product/Product";
 import ProductDetail from "../../components/product/ProductDetail";
 import PrestigeBuyer from "../../components/product/PrestigeBuyer";
@@ -10,6 +11,7 @@ const AddProductPage = () => {
         <Product />
         <ProductDetail />
       </div>
+
     </div>
   );
 };
