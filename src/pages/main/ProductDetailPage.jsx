@@ -4,6 +4,7 @@ import ProductDetail from "../../components/product/ProductDetail";
 import PrestigeBuyer from "../../components/product/PrestigeBuyer";
 import DescriptionProduct from "../../components/product/DescriptionProduct";
 
+
 const ProductDetailPage = () => {
   return (
     <div className="pt-[120px] w-full items-center justify-center flex flex-col gap-6">

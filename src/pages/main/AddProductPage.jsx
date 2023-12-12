@@ -1,10 +1,17 @@
 import React from "react";
-import AddProduct from "../../components/addproduct/AddProduct";
+
+import Product from "../../components/product/Product";
+import ProductDetail from "../../components/product/ProductDetail";
+import PrestigeBuyer from "../../components/product/PrestigeBuyer";
 
 const AddProductPage = () => {
   return (
-    <div className="pt-[120px]">
-      <AddProduct />
+    <div className="pt-[70px] w-full items-center justify-center flex flex-col gap-6">
+      <div className="flex flex-row items-center justify-center w-full gap-6">
+        <Product />
+        <ProductDetail />
+      </div>
+
     </div>
   );
 };
