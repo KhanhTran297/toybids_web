@@ -1,12 +1,15 @@
 import React from "react";
 import "./UserOption.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const UserOption = () => {
   const navigate = useNavigate();
 
   const handleClickProfile = () => {
-    navigate('/userprofile');
+    navigate("/userprofile");
+  };
+  const handleClickCreateAuction = () => {
+    navigate("/addproduct");
   };
 
   const handleLogout = () => {
@@ -19,10 +22,13 @@ export const UserOption = () => {
 
   return (
     <div className="flex-col items-start gap-[24px] p-6 rounded-[14px] fixed top-10 right-2 ">
-      <a className="user cursor-pointer" onClick={handleClickProfile}>
+      <a className="cursor-pointer user" onClick={handleClickProfile}>
         Profile
       </a>
-      <a className="user" href="#" onClick={handleLogout}>
+      <a className="cursor-pointer user" onClick={handleClickCreateAuction}>
+        Create Auction
+      </a>
+      <a className="cursor-pointer user" href="#" onClick={handleLogout}>
         Log out
       </a>
     </div>

@@ -44,7 +44,6 @@ const Header = () => {
             className="border-none outline-none bg-[#52AB98] text-[#ffff] "
           ></input>
         </div>
-        <ILocalNotification fill="#ffff" />
 
         <button onClick={() => setShow(!show)}>
           <Avt />

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 
-const Product = () => {
-  const smallImages = [
-    "https://mohinhfigure.com/wp-content/uploads/2023/10/mo-hinh-itachi-akatsuki-de-hac-hoa-co-qua-tay-cam-non-cao-29cm-nang-820gr-co-hop-1-768x768.jpg",
-    "https://mohinhfigure.com/wp-content/uploads/2023/10/mo-hinh-itachi-akatsuki-de-hac-hoa-co-qua-tay-cam-non-cao-29cm-nang-820gr-co-hop-7-768x768.jpg",
-    "https://mohinhfigure.com/wp-content/uploads/2023/10/mo-hinh-itachi-akatsuki-de-hac-hoa-co-qua-tay-cam-non-cao-29cm-nang-820gr-co-hop-6-768x768.jpg",
-    "https://mohinhfigure.com/wp-content/uploads/2023/10/mo-hinh-itachi-akatsuki-de-hac-hoa-co-qua-tay-cam-non-cao-29cm-nang-820gr-co-hop-4-768x768.jpg",
-  ];
-  const [selectedImage, setSelectedImage] = useState(smallImages[0]);
+const Product = (props) => {
+  const { mainImage, subImage1, subImage2, subImage3 } = props;
+  const smallImages = [mainImage, subImage1, subImage2, subImage3];
+  const [selectedImage, setSelectedImage] = useState(smallImages[1]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);

@@ -10,7 +10,6 @@ import UserProfilePage from "../pages/main/UserProfilePage";
 
 import GuardRoute from "./GuardRoute";
 
-
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
   const route = {
@@ -27,18 +26,10 @@ export default function init(routes) {
         ),
       },
       {
-        path: "productdetail",
+        path: "productdetail/:productId",
         element: (
           <GuardRoute>
             <ProductDetailPage />
-          </GuardRoute>
-        ),
-      },
-      {
-        path: "addproduct",
-        element: (
-          <GuardRoute>
-            <AddProductPage />
           </GuardRoute>
         ),
       },
@@ -74,7 +65,7 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
-   {
+      {
         path: "userprofile",
         element: (
           <GuardRoute>
@@ -82,7 +73,6 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
-      
     ],
   };
 
