@@ -1,10 +1,17 @@
-import { Avatar, Button, Form, Input, Table } from "antd";
+import { useQuery } from "@tanstack/react-query";
+import { Avatar, Button, Card, Form, Image, Input, Modal, Table } from "antd";
 import dayjs from "dayjs";
+import queryString from "query-string";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { getListProduct } from "../../api/product";
+import Meta from "antd/es/card/Meta";
+import Product from "../shared/Product";
 const ProductsManagement = (props) => {
   const { bg } = props;
   const [form] = Form.useForm();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [productDetail, setProductDetail] = useState();
   const handleSearch = async (values) => {
     for (const key in values) {
       if (Object.prototype.hasOwnProperty.call(values, key)) {
@@ -17,11 +24,39 @@ const ProductsManagement = (props) => {
     }
     setSearchParams(values);
   };
+  const handleSetproductDetail = async (product) => {
+    setProductDetail(product);
+  };
+  const handleOpenModal = async (product) => {
+    await handleSetproductDetail(product);
+    showModal();
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const handleReset = () => {
     setSearchParams({});
     form.resetFields();
   };
-
+  const queryParam = useMemo(
+    () => queryString.parse(location.search),
+    [location.search]
+  );
+  const { data: listProduct } = useQuery({
+    queryKey: ["listProduct", queryParam],
+    queryFn: () =>
+      getListProduct(queryParam).then((res) => {
+        console.log("res", res.data.content);
+        return res.data.content;
+      }),
+  });
   const data = [
     {
       key: 1,
@@ -141,17 +176,16 @@ const ProductsManagement = (props) => {
   ];
   return (
     <div
-      className="flex flex-col"
+      className="flex flex-col h-full"
       style={{
         padding: 24,
-        minHeight: 360,
         background: bg,
       }}
     >
       <div className=" mb-2 pb-2 border-b-[1px] border-black border-solid">
         <Form layout="inline" onFinish={handleSearch} form={form}>
-          <Form.Item label="Productname" name="ProductName">
-            <Input defaultValue={searchParams.get("fullName")}></Input>
+          <Form.Item label="Productname" name="name">
+            <Input defaultValue={searchParams.get("name")}></Input>
           </Form.Item>
           <Form.Item>
             <Button htmlType="submit">Search</Button>
@@ -166,24 +200,68 @@ const ProductsManagement = (props) => {
           </Form.Item>
         </Form>
       </div>
-      <div className="">
-        <Table
-          dataSource={data}
-          columns={columns}
-          bordered
-          expandable={{
-            expandedRowRender: (record) => (
-              <p
-                style={{
-                  margin: 0,
-                }}
-              >
-                {record.description}
-              </p>
-            ),
-          }}
-        ></Table>
+      <div className=" h-full overflow-y-scroll grid grid-flow-row grid-cols-[32%_32%_32%] gap-5 ">
+        {listProduct?.map((item, index) => (
+          <Product
+            key={index}
+            id={item.id}
+            mainImage={item.mainImage}
+            subImage1={item.subImage1}
+            subImage2={item.subImage2}
+            subImage3={item.subImage3}
+            name={item.name}
+            bid={item.startBidPrice}
+            product={item}
+            eventOnClick={() => handleOpenModal(item)}
+          />
+        ))}
       </div>
+      <Modal
+        title="Product detail"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okType="default"
+      >
+        <div className=" flex flex-col gap-2">
+          <div className=" flex flex-col gap-2">
+            <p className=" font-semibold text-2xl border-b-[1px] border-solid border-black">
+              Product:
+            </p>
+            <div className=" flex flex-col gap-2">
+              <p className=" text-base font-medium">
+                Name: {productDetail?.name}
+              </p>
+              <p className=" text-base font-medium">
+                Description: {productDetail?.description}
+              </p>
+              <p className=" text-base font-medium">
+                Start Bid Price: {productDetail?.startBidPrice}
+              </p>
+              <p className=" text-base font-medium">
+                Bid time: {productDetail?.bidTime}
+              </p>
+              <p className=" text-base font-medium">
+                Created Date {productDetail?.createdDate}
+              </p>
+              <p className=" text-base font-medium">
+                Category: {productDetail?.category?.categoryName}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className=" font-semibold text-2xl border-b-[1px] border-solid border-black">
+              Seller
+            </p>
+            <div className=" flex flex-col gap-2">
+              <Avatar src={productDetail?.seller?.avatar} size={70}></Avatar>
+              <p className=" text-base font-medium">
+                Fullname: {productDetail?.seller?.fullName}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
