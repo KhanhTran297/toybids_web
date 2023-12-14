@@ -6,7 +6,6 @@ import { UserOption } from "./UserOption";
 
 import { useNavigate } from "react-router-dom";
 
-
 import Logo from "../../assets/logo.png";
 
 const Header = () => {
@@ -26,9 +25,6 @@ const Header = () => {
           onClick={() => navigate("/home")}
         >
           Home
-        </button>
-        <button className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg">
-          Sale
         </button>
         <button
           className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg"

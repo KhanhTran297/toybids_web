@@ -4,6 +4,7 @@ import KT from "../../assets/KT.jpg";
 import AB from "../../assets/AB.jpg";
 import LK from "../../assets/LK.jpg";
 import Ton from "../../assets/Ton.jpg";
+import KP from "../../assets/KP.jpg";
 
 const AboutUsPage = () => {
   return (
@@ -16,38 +17,30 @@ const AboutUsPage = () => {
         destination for those who have a passion for toy models.
       </div>
       <h2 className="text-3xl font-semibold ">Group 147</h2>
-      <div className="flex flex-row justify-between px-8 py-6 border-2 border-solid border-[#2B6777] w-[1000px] h-[300px]">
-        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-center items-center gap-4 p-4 ">
+      <div className="flex flex-row justify-between px-8 py-6 border-2 border-solid border-[#2B6777] w-[1000px] h-[250px]">
+        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-around items-center gap-4 p-4 ">
           <Avatar shape="circle" src={KT} size="large"></Avatar>
-          <div className="text-lg font-medium text-center">
-            Tran Minh Gia Khanh
-          </div>
+          <div className="text-lg font-medium text-center">Khanh Tran</div>
           <div className="text-lg text-center text-[#736F6F]">FE dev</div>
         </div>
-        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-center items-center  p-4 gap-4">
+        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-around items-center  p-4 gap-4">
           <Avatar shape="circle" src={AB} size="large"></Avatar>
           <div className="text-lg font-medium text-center">Bui Ngoc Anh</div>
           <div className="text-lg text-center text-[#736F6F]">FE dev</div>
         </div>
-        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-center items-center gap-4 p-4">
+        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-around items-center gap-4 p-4">
           <Avatar shape="circle" src={LK} size="large"></Avatar>
-          <div className="text-lg font-medium text-center">Ly Hong Khanh</div>
+          <div className="text-lg font-medium text-center">Ly Khanh</div>
           <div className="text-lg text-center text-[#736F6F]">Team leader</div>
         </div>
-        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-center items-center gap-4 p-4">
-          <Avatar shape="circle" src={KT} size="large"></Avatar>
-          <div className="text-lg font-medium text-center">
-            Pham Vu Dang Khoa
-          </div>
-          <div className="text-lg text-center text-[#736F6F]">
-            Database design
-          </div>
+        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-around items-center gap-4 p-4">
+          <Avatar shape="circle" src={KP} size="large"></Avatar>
+          <div className="text-lg font-medium text-center">Khoa Pham</div>
+          <div className="text-lg text-center text-[#736F6F]">Database dev</div>
         </div>
-        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-center items-center gap-4 p-4">
+        <div className="bg-[#C8E8D4] w-[150px] h-full flex flex-col justify-around items-center gap-4 p-4">
           <Avatar shape="circle" src={Ton} size="large"></Avatar>
-          <div className="text-lg font-medium text-center">
-            Nguyen Huynh Thanh Toan
-          </div>
+          <div className="text-lg font-medium text-center">Thanh Toan</div>
           <div className="text-lg text-center text-[#736F6F]">BE dev</div>
         </div>
       </div>
