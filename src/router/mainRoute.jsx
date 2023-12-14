@@ -9,6 +9,7 @@ import CheckOutPage from "../pages/main/CheckoutPage";
 import UserProfilePage from "../pages/main/UserProfilePage";
 import EditProfilePage from "../pages/main/EditProfilePage";
 import GuestProfilePage from "../pages/main/GuestProfilePage";
+import SearchProductPage from "../pages/main/SearchProductPage";
 
 import GuardRoute from "./GuardRoute";
 
@@ -98,6 +99,12 @@ export default function init(routes) {
             <GuestProfilePage/>
           </GuardRoute>
         ),
+      },
+      {
+        path: "searchproduct/:productName",
+        element: (<GuardRoute>
+          <SearchProductPage/>
+        </GuardRoute>),
       },
     ],
   };
