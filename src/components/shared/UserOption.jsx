@@ -9,6 +9,10 @@ export const UserOption = () => {
     navigate('/userprofile');
   };
 
+  const handleClickGuestProfile = (guestID) => {
+    navigate(`/guestprofile/${guestID}`);
+  };
+
   const handleLogout = () => {
     // Xóa toàn bộ token khỏi localStorage khi người dùng click Log out
     localStorage.removeItem("userToken");
@@ -21,6 +25,9 @@ export const UserOption = () => {
     <div className="flex-col items-start gap-[24px] p-6 rounded-[14px] fixed top-10 right-2 ">
       <a className="user cursor-pointer" onClick={handleClickProfile}>
         Profile
+      </a>
+      <a className="user cursor-pointer" onClick={() => handleClickGuestProfile(6991830680698880)}>
+        Guest Profile
       </a>
       <a className="user" href="#" onClick={handleLogout}>
         Log out
