@@ -52,8 +52,8 @@ const ContentProfile = () => {
               alt=""
               className="w-36 h-36 rounded-full"
             />
-            <div className="w-28 h-10 bg-[#52AB98] mt-16 mb-12 ml-4 flex items-center justify-center rounded-lg font-semibold text-white ">
-              <button onClick={handleEditProfileClick}>Edit Profile</button>
+            <div className="w-28 h-10 bg-[#52AB98] mt-16 mb-12 ml-4 flex items-center justify-center rounded-lg font-semibold text-white " onClick={handleEditProfileClick}>
+              <button >Edit Profile</button>
             </div>
           </div>
           {/* Profile Info */}

@@ -173,8 +173,8 @@ const EditProfile = () => {
             </div>
 
             <div className="flex justify-center">
-              <div className="w-1/2 h-10 bg-[#52AB98] mt-16 mb-12 ml-4 flex items-center justify-center rounded-lg font-semibold text-white ">
-                <button onClick={handleSubmit}>Save Changes</button>
+              <div className="w-1/2 h-10 bg-[#52AB98] mt-16 mb-12 ml-4 flex items-center justify-center rounded-lg font-semibold text-white " onClick={handleSubmit}>
+                <button >Save Changes</button>
               </div>
             </div>
           </div>
