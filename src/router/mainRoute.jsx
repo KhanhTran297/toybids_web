@@ -4,12 +4,13 @@ import AddProductPage from "../pages/main/AddProductPage";
 import TransactionHistoryPage from "../pages/main/TransactionHistoryPage";
 import HomePage from "../pages/main/HomePage";
 import ProductDetailPage from "../pages/main/ProductDetailPage";
-import CheckOutPage from "../pages/main/CheckoutPage";
+
 
 import UserProfilePage from "../pages/main/UserProfilePage";
 import EditProfilePage from "../pages/main/EditProfilePage";
 import GuestProfilePage from "../pages/main/GuestProfilePage";
 import SearchProductPage from "../pages/main/SearchProductPage";
+import CheckOutPage from "../pages/main/CheckoutPage";
 
 import GuardRoute from "./GuardRoute";
 
@@ -106,6 +107,12 @@ export default function init(routes) {
           <SearchProductPage/>
         </GuardRoute>),
       },
+      {
+        path: "checkout",
+        element: (<GuardRoute>
+          <CheckOutPage/>
+        </GuardRoute>),
+      }
     ],
   };
 
