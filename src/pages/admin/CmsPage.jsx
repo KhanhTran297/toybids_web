@@ -4,6 +4,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   FileOutlined,
+  DropboxOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, Layout, Menu, theme } from "antd";
 import { Avatar } from "antd";
@@ -26,7 +27,7 @@ const CmsPage = () => {
       case "product":
         navigate(`/admin/${data.key}`);
         break;
-      case "report":
+      case "category":
         navigate(`/admin/${data.key}`);
         break;
       case "statistic":
@@ -47,8 +48,8 @@ const CmsPage = () => {
   const siderItems = [
     getItem("Account Management", "account", <UserOutlined />),
     getItem("Products Management", "product", <FileOutlined />),
-    getItem("Report Management", "report", <FileOutlined />),
-    getItem("Statistic Management", "statistic", <FileOutlined />),
+    getItem("Category Management", "category", <DropboxOutlined />),
+    // getItem("Statistic Management", "statistic", <FileOutlined />),
     // getItem("", "5", <FileOutlined />),
   ];
   const onClick = ({ key }) => {
@@ -135,10 +136,6 @@ const CmsPage = () => {
             margin: "24px 16px 0",
           }}
         >
-          {/* {params.id === "1" && <AccountManagement bg={colorBgContainer} />}
-          {params.id === "2" && <ProductsManagement bg={colorBgContainer} />}
-          {params.id === "3" && <ReportManagement bg={colorBgContainer} />}
-          {params.id === "4" && <StatisticManagement bg={colorBgContainer} />} */}
           <Outlet />
         </Content>
         <Footer

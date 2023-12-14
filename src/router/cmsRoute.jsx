@@ -1,4 +1,5 @@
 import AccountManagement from "../components/admin/AccountManagement";
+import CategoryManagement from "../components/admin/CategoryManagement";
 import ProductsManagement from "../components/admin/ProductsManagement";
 import ReportManagement from "../components/admin/ReportManagement";
 import StatisticManagement from "../components/admin/StatisticManagement";
@@ -28,8 +29,8 @@ export default function init(routes) {
             element: <ProductsManagement />,
           },
           {
-            path: "report",
-            element: <ReportManagement />,
+            path: "category",
+            element: <CategoryManagement />,
           },
           {
             path: "statistic",
