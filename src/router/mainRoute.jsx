@@ -7,9 +7,9 @@ import ProductDetailPage from "../pages/main/ProductDetailPage";
 import CheckOutPage from "../pages/main/CheckoutPage";
 
 import UserProfilePage from "../pages/main/UserProfilePage";
+import EditProfilePage from "../pages/main/EditProfilePage";
 
 import GuardRoute from "./GuardRoute";
-
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -74,7 +74,7 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
-   {
+      {
         path: "userprofile",
         element: (
           <GuardRoute>
@@ -82,7 +82,14 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
-      
+      {
+        path: "editprofile",
+        element: (
+          <GuardRoute>
+            <EditProfilePage />
+          </GuardRoute>
+        ),
+      },
     ],
   };
 
