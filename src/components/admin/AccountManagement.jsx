@@ -132,19 +132,19 @@ const AccountManagement = (props) => {
         );
       },
     },
-    {
-      title: "Action",
-      key: "action",
-      align: "center",
-      render: (_, record) => (
-        <Space size="middle">
-          <EyeOutlined
-            onClick={showDrawer}
-            className=" hover:text-blue-400 cursor-pointer"
-          />
-        </Space>
-      ),
-    },
+    // {
+    //   title: "Action",
+    //   key: "action",
+    //   align: "center",
+    //   render: (_, record) => (
+    //     <Space size="middle">
+    //       <EyeOutlined
+    //         onClick={showDrawer}
+    //         className=" hover:text-blue-400 cursor-pointer"
+    //       />
+    //     </Space>
+    //   ),
+    // },
   ];
   return (
     <div

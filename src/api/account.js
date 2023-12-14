@@ -3,7 +3,7 @@ import UseCallApi from "../hook/useCallApi";
 const { UsePost, UseGet, UseEdit } = UseCallApi();
 export const getListAccount = (params) => {
   const url = "/v1/account/list";
-  return UseGet({ url, params });
+  return UseGet({ url, params, requiredToken: true });
 };
 //sendOtp
 export const sentOtpApi = (params) => {
