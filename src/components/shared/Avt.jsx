@@ -5,7 +5,7 @@ const Avt = ({ imageUrl }) => {
 
   return (
     <div
-      className="w-10 h-10  bg-cover rounded-[40px] bg-no-repeat border-[1px] cursor-pointer border-[#ffff]"
+      className="relative inline-block w-10 h-10  bg-cover rounded-[40px] bg-no-repeat border-[1px] cursor-pointer border-[#ffff]"
       style={{
         backgroundImage: imageUrl
           ? `url(${imageUrl})`
