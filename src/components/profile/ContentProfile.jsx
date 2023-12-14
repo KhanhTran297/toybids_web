@@ -43,7 +43,7 @@ const ContentProfile = () => {
   
 
   return (
-    <div className="py-6 px-44">
+    <div className=" py-6 px-44">
       {userProfileData && (
         <>
           <div className="flex">

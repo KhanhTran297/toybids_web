@@ -14,6 +14,7 @@ const AddProductPage = () => {
     name: "",
     categoryId: null,
     startBidPrice: null,
+    minBidPrice: null,
     status: 1,
     startDate: null,
     mainImage: "",
@@ -109,7 +110,7 @@ const AddProductPage = () => {
       //TẠO ĐẤU GIÁ VỚI ID VỪA LẤY CỦA SẢN PHẨM
       const auctionData = {
         maxBidders: 100,
-        minBidPrice: 10000,
+        minBidPrice: formData.minBidPrice,
         productId: productId,
         startDate: formData.startDate,
       };
@@ -159,6 +160,13 @@ const AddProductPage = () => {
             placeholder="Giá Khởi Điểm"
             value={formData.startBidPrice}
             onChange={(e) => handleChange("startBidPrice", e.target.value)}
+            required
+          />
+          <Input
+            type="number"
+            placeholder="Min Bid Price"
+            value={formData.minBidPrice}
+            onChange={(e) => handleChange("minBidPrice", e.target.value)}
             required
           />
           <Input
