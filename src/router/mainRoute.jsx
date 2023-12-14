@@ -8,6 +8,7 @@ import CheckOutPage from "../pages/main/CheckoutPage";
 
 import UserProfilePage from "../pages/main/UserProfilePage";
 import EditProfilePage from "../pages/main/EditProfilePage";
+import GuestProfilePage from "../pages/main/GuestProfilePage";
 
 import GuardRoute from "./GuardRoute";
 
@@ -87,6 +88,14 @@ export default function init(routes) {
         element: (
           <GuardRoute>
             <EditProfilePage />
+          </GuardRoute>
+        ),
+      },
+      {
+        path: "guestprofile/:guestID",
+        element: (
+          <GuardRoute>
+            <GuestProfilePage/>
           </GuardRoute>
         ),
       },
