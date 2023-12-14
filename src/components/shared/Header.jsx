@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ILocalSearch } from "../svg/search";
 import Avt from "./Avt";
 import { ILocalNotification } from "../svg/notification";
-import useClickOutSide from "../../hook/useClickOutside";
+import useClickOutSide from "../../hook/useClickOutSide";
 import { UserOption } from "./UserOption";
 import Logo from "../../assets/logo.png";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
