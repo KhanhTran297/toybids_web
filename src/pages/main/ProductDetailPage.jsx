@@ -12,8 +12,8 @@ const ProductDetailPage = () => {
   const { data: detailAuction } = useQuery({
     queryKey: ["detailAuction", productId],
     queryFn: getDetailAuctionById,
-    enabled: !!productId,
   });
+
   return (
     <div className="pt-[120px] w-full items-center justify-center flex flex-col gap-6">
       <div className="flex flex-row items-center justify-center w-full gap-6">
@@ -29,6 +29,9 @@ const ProductDetailPage = () => {
           productName={detailAuction?.data?.product?.name}
           endDate={detailAuction?.data?.endDate}
           startDate={detailAuction?.data?.startDate}
+          idAuction={detailAuction?.data?.id}
+          idProduct={detailAuction?.data?.product?.id}
+
         />
       </div>
       <DescriptionProduct
@@ -36,7 +39,7 @@ const ProductDetailPage = () => {
         idAuction={detailAuction?.data?.id}
       />
       <PrestigeBuyer
-        idBuyer={detailAuction?.data?.seller?.id}
+        idSeller={detailAuction?.data?.seller?.id}
         name={detailAuction?.data?.seller?.fullName}
         avt={detailAuction?.data?.seller?.avatar}
       />

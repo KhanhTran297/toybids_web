@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const GuestProfilePage = () => {
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
-    navigate("/home");
+    history.back();
   };
   return (
     <div>
