@@ -1,10 +1,9 @@
 import AccountManagement from "../components/admin/AccountManagement";
 import CategoryManagement from "../components/admin/CategoryManagement";
 import ProductsManagement from "../components/admin/ProductsManagement";
-import ReportManagement from "../components/admin/ReportManagement";
-import StatisticManagement from "../components/admin/StatisticManagement";
 import CmsLayout from "../layout/CmsLayout";
 import CmsPage from "../pages/admin/CmsPage";
+import GuardRoute from "./GuardRoute";
 
 // Xem cấu trúc routes ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -22,19 +21,27 @@ export default function init(routes) {
         children: [
           {
             path: "account",
-            element: <AccountManagement />,
+            element: (
+              <GuardRoute>
+                <AccountManagement />
+              </GuardRoute>
+            ),
           },
           {
             path: "product",
-            element: <ProductsManagement />,
+            element: (
+              <GuardRoute>
+                <ProductsManagement />
+              </GuardRoute>
+            ),
           },
           {
             path: "category",
-            element: <CategoryManagement />,
-          },
-          {
-            path: "statistic",
-            element: <StatisticManagement />,
+            element: (
+              <GuardRoute>
+                <CategoryManagement />
+              </GuardRoute>
+            ),
           },
         ],
       },
