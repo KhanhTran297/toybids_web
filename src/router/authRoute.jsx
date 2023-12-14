@@ -1,4 +1,5 @@
 import AuthenticateLayout from "../layout/AuthenticateLayout";
+import ForgorPasswordPage from "../pages/auth/ForgorPasswordPage";
 import LoginPage from "../pages/auth/LoginPage";
 import SignUpPage from "../pages/auth/SignUpPage";
 
@@ -19,6 +20,10 @@ export default function init(routes) {
       {
         path: "signup",
         element: <SignUpPage />,
+      },
+      {
+        path: "forgotpassword",
+        element: <ForgorPasswordPage />,
       },
     ],
   };
