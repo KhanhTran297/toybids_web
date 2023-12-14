@@ -9,11 +9,13 @@ import {
 import { Button, Dropdown, Layout, Menu, theme } from "antd";
 import { Avatar } from "antd";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
 const { Header, Content, Footer, Sider } = Layout;
 
 const CmsPage = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
+    localStorage.removeItem("userToken");
     navigate("/");
   };
 
@@ -82,7 +84,13 @@ const CmsPage = () => {
         collapsible
         collapsed={collapsed}
       >
-        <div className="demo-logo-vertical flex justify-center place-items-center relative w-full h-[150px] bg-slate-400 rounded-2xl"></div>
+        <div className="demo-logo-vertical flex justify-center place-items-center relative w-full h-[150px] bg-slate-400 rounded-2xl">
+          <img
+            src={logo}
+            alt=""
+            className=" absolute w-full h-full rounded-2xl"
+          />
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -135,6 +143,7 @@ const CmsPage = () => {
           style={{
             margin: "24px 16px 0",
           }}
+          className=" h-full"
         >
           <Outlet />
         </Content>

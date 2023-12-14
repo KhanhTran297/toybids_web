@@ -10,7 +10,7 @@ const GuardRoute = ({ children }) => {
       navigate("/");
     }
   }, []);
-  return <div>{children}</div>;
+  return <div className=" h-full">{children}</div>;
 };
 
 GuardRoute.propTypes = {};

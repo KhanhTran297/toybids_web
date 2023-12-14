@@ -1,7 +1,7 @@
 import UseCallApi from "../hook/useCallApi";
 
-const { UsePost, UseGet } = UseCallApi();
+const { UseGet } = UseCallApi();
 export const getListProduct = (params) => {
   const url = "/v1/product/list";
-  return UseGet({ url, params });
+  return UseGet({ url, params, requiredToken: true });
 };

@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { Avatar, Button, Card, Form, Image, Input, Modal, Table } from "antd";
-import dayjs from "dayjs";
+import { Avatar, Button, Form, Input, Modal } from "antd";
 import queryString from "query-string";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getListProduct } from "../../api/product";
-import Meta from "antd/es/card/Meta";
 import Product from "../shared/Product";
 const ProductsManagement = (props) => {
   const { bg } = props;
@@ -57,126 +55,9 @@ const ProductsManagement = (props) => {
         return res.data.content;
       }),
   });
-  const data = [
-    {
-      key: 1,
-      seller: "Khanh",
-      productImage:
-        "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg",
-      productName: "Logo songoku",
-      startBid: "10$",
-      status: 1,
-      description: "Mo hinh goku dep",
-    },
-    {
-      key: 2,
-      seller: "Anh",
-      productImage:
-        "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg",
-      productName: "lego nami",
-      startBid: "10$",
-      status: 2,
-      description: "Mo hinh nami cuc mup",
-    },
-    {
-      key: 3,
-      seller: "Toan",
-      productImage:
-        "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg",
-      productName: "Lego Pokemon",
-      startBid: "12$",
-      status: 3,
-      description: "Mo hinh pokemon dep nhat the gioi",
-    },
-  ];
-  const columns = [
-    {
-      title: "Seller",
-      dataIndex: "seller",
-      key: "seller",
-      align: "center",
-    },
-    {
-      title: "Image",
-      dataIndex: "productImage",
-      key: "productImage",
-      align: "center",
-      render: (_, record) => (
-        <Avatar
-          src={
-            "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg"
-          }
-        />
-      ),
-    },
-    {
-      title: "Productname",
-      dataIndex: "productName",
-      key: "productName",
-      align: "center",
-    },
-    {
-      title: "Start bid",
-      dataIndex: "startBid",
-      key: "startBid",
-      align: "center",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      align: "center",
-      className: "flex justify-center",
-      width: 100,
-      render: (_, record) => {
-        var status = " ";
-        var bgcss = "";
-        switch (record.status) {
-          case 1:
-            status = "Active";
-            bgcss = "bg-green-500";
-            break;
-          case 2:
-            status = "Pending";
-            bgcss = "bg-yellow-500";
-            break;
-          case 3:
-            status = "Lock";
-            bgcss = "bg-red-500";
-            break;
-          default:
-            break;
-        }
-        return <p className={`${bgcss} p-1 rounded-md  w-[80px]`}>{status}</p>;
-      },
-    },
-    {
-      title: "Action",
-      dataIndex: "action",
-      key: "action",
-      align: "center",
-      width: 100,
-      render: (_, record) => {
-        if (record.status === 2) {
-          return (
-            <div className="flex justify-center">
-              <Button className="mr-2" type="default" onClick={() => {}}>
-                Active
-              </Button>
-              <Button type="default" danger onClick={() => {}}>
-                Reject
-              </Button>
-            </div>
-          );
-        } else {
-          return <div className=""></div>;
-        }
-      },
-    },
-  ];
   return (
     <div
-      className="flex flex-col h-full"
+      className=" relative flex flex-col h-full"
       style={{
         padding: 24,
         background: bg,
@@ -200,7 +81,7 @@ const ProductsManagement = (props) => {
           </Form.Item>
         </Form>
       </div>
-      <div className=" h-full overflow-y-scroll grid grid-flow-row grid-cols-[32%_32%_32%] gap-5 ">
+      <div className="  h-full overflow-y-scroll grid grid-flow-row grid-cols-[32%_32%_32%] gap-5 ">
         {listProduct?.map((item, index) => (
           <Product
             key={index}
