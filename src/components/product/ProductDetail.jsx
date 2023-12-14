@@ -1,13 +1,62 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Modal, message } from "antd";
+import { createBidApi } from "../../api/bid";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const ProductDetail = (props) => {
-  const { categoryName, productName, currentPrice, endDate, startDate } = props;
+  const {
+    categoryName,
+    productName,
+    currentPrice,
+    endDate,
+    startDate,
+    idAuction,
+    idProduct,
+  } = props;
 
   const [auctionTime, setAuctionTime] = useState("");
   const [eventStatus, setEventStatus] = useState("");
 
-  const [deliveryTime, setDeliveryTime] = useState({ start: "", end: "" }); //thời gian giao hàng
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bidPrice, setBidPrice] = useState("");
+  const queryClient = useQueryClient();
+  const { mutateAsync: createBid } = useMutation({
+    mutationKey: ["createBid"],
+    mutationFn: createBidApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["detailAuction"]);
+      message.success("Create bid successfully");
+    },
+  });
+  const handleBidChange = (e) => {
+    setBidPrice(e.target.value);
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const handlePlaceBid = () => {
+    if (parseFloat(bidPrice) > parseFloat(currentPrice)) {
+      setIsModalOpen(false);
+      const data = {
+        auctionId: idAuction,
+        bidPrice: bidPrice,
+      };
+      createBid(data).then(() => {
+        setIsModalOpen(false);
+      });
+    } else {
+      alert(
+        "Your bid must be higher than the current price and at least 10,000 higher."
+      );
+    }
+  };
+
   const formatDate = (string) => {
     let time = string.split(" ");
     let date = time[0].split("/");
@@ -134,8 +183,6 @@ const ProductDetail = (props) => {
     return () => clearInterval(intervalId);
   }, [startDate]);
 
-  // Bạn có thể sử dụng `timeToStart` ở đâu đó trong component của mình
-
   // useEffect(() => {
   //   const getProductInfo = async () => {
   //     try {
@@ -261,13 +308,7 @@ const ProductDetail = (props) => {
             Category: {categoryName}
           </div>
         </div>
-        <div className="flex flex-row w-full gap-2 ">
-          <div className="flex flex-row items-center w-full h-auto gap-2">
-            <div className="text-lg font-bold">
-              Estimated Delivery Time: {deliveryTime.start} - {deliveryTime.end}
-            </div>
-          </div>
-        </div>
+
         <div className="flex flex-row items-center w-full h-auto gap-2">
           <div className="text-lg  font-bold w-[120px]">Payments:</div>
           <img
@@ -276,13 +317,37 @@ const ProductDetail = (props) => {
             className="border-[1px] border-black w-16 h-10 px-1"
           />
         </div>
-        <div className="flex flex-row justify-center ">
-          <div className="flex w-[216px] h-[52px] items-start gap-[10px] px-[45px] py-[17px] relative bg-[#52ab98] rounded-[16px]">
-            <div className="relative flex-1 self-stretch mt-[-1.00px] [font-family:'Roboto-Bold',Helvetica] font-bold text-white text-[14px] text-center tracking-[0] leading-[normal]">
-              Place Bid
+        {eventStatus === "2" && (
+          <div className="flex flex-row justify-center ">
+            <div className="flex w-[216px] h-[52px] items-start gap-[10px] px-[45px] py-[17px] relative bg-[#52ab98] rounded-[16px]">
+              <div
+                className="relative flex-1 self-stretch mt-[-1.00px] [font-family:'Roboto-Bold',Helvetica] font-bold text-white text-[14px] text-center tracking-[0] leading-[normal]"
+                onClick={showModal}
+              >
+                Place Bid
+              </div>
+
+              <Modal
+                title="Place your bid"
+                open={isModalOpen}
+                onOk={handlePlaceBid}
+                onCancel={handleCancel}
+                okText="Place Bid"
+                cancelText="Cancel"
+                okType="danger"
+              >
+                <p>Enter your bid price:</p>
+                <input
+                  type="number"
+                  value={bidPrice}
+                  onChange={handleBidChange}
+                  className="border-[#00000] border-2"
+                />
+                <p>Please bid more than current bid 10000</p>
+              </Modal>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

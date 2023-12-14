@@ -50,7 +50,9 @@ function UseCallApi() {
       type === "basicAuth"
         ? (fullHeader["Authorization"] = `Basic ${credentialsBase64}`)
         : requiredToken &&
-          (fullHeader["Authorization"] = `Bearer ${getToken().access_token}`);
+          (fullHeader["Authorization"] = `Bearer ${localStorage.getItem(
+            "userToken"
+          )}`);
     }
 
     const usedPost = () =>
