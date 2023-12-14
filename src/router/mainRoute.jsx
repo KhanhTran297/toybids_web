@@ -5,6 +5,7 @@ import TransactionHistoryPage from "../pages/main/TransactionHistoryPage";
 import HomePage from "../pages/main/HomePage";
 import ProductDetailPage from "../pages/main/ProductDetailPage";
 import CheckOutPage from "../pages/main/CheckoutPage";
+import UserProfilePage from "../pages/main/UserProfilePage";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -40,6 +41,10 @@ export default function init(routes) {
       {
         path: "checkout",
         element: <CheckOutPage />,
+      },
+      {
+        path: "userprofile",
+        element: <UserProfilePage/>,
       },
     ],
   };
