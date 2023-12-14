@@ -13,8 +13,11 @@ import {
 } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getListAccount } from "../../api/account";
+import queryString from "query-string";
 const DescriptionItem = ({ title, content }) => (
   <div className=" mb-[7px] text-[14px] leading-[1.5715] ">
     <p className=" inline-block mr-[8px]">{title}:</p>
@@ -31,6 +34,23 @@ const AccountManagement = (props) => {
   const onClose = () => {
     setOpen(false);
   };
+  const queryParam = useMemo(
+    () => queryString.parse(location.search),
+    [location.search]
+  );
+  const { data: listAccount, isLoading: loadingListAccount } = useQuery({
+    queryKey: ["listAccount", queryParam],
+    queryFn: () =>
+      getListAccount(queryParam).then((res) => {
+        const modifiedData = res.data.content.map((item, index) => {
+          return {
+            ...item,
+            key: index,
+          };
+        });
+        return modifiedData;
+      }),
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const handleSearch = async (values) => {
     for (const key in values) {
@@ -48,120 +68,35 @@ const AccountManagement = (props) => {
     setSearchParams({});
     form.resetFields();
   };
-  const data = [
-    {
-      userAvatar:
-        "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg",
-      userFullName: "Nguyen Van A",
-      userEmail: "test@gmail.com",
-      phone: "0123456789",
-      dateOfBirth: "12/07/2002 10:06:06",
-      status: 1,
-      address: "123 Nguyen Van A",
-      city: "HCM",
-      country: "Viet Nam",
-      reputation: 3,
-    },
-    {
-      userAvatar:
-        "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg",
-      userFullName: "Nguyen Van B",
-      userEmail: "test123@gmail.com",
-      phone: "0123456789",
-      dateOfBirth: "25/05/2002 10:06:06",
-      status: 1,
-      address: "123 Nguyen Van B",
-      city: "HCM",
-      country: "USA",
-      reputation: 6,
-    },
-    {
-      userAvatar:
-        "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg",
-      userFullName: "Nguyen Van C",
-      userEmail: "test3333@gmail.com",
-      phone: "0123456789",
-      dateOfBirth: "07/07/2002 10:06:06",
-      status: 1,
-      address: "123 Nguyen Van C",
-      city: "Ha Noi",
-      country: "Viet Nam",
-      reputation: 9,
-    },
-  ];
   const columns = [
     {
       title: "Avatar",
-      dataIndex: "userAvatar",
-      key: "userAvatar",
+      dataIndex: "avatar",
+      key: "avatar",
       align: "center",
-      render: (_, record) => (
-        <Avatar
-          src={
-            "https://s3.ap-southeast-1.amazonaws.com/family.circle/avatar/AVATAR_tB5idnWvVj.jpg"
-          }
-        />
-      ),
+      render: (_, record) => <Avatar src={record.avatar} />,
     },
     {
       title: "Fullname",
-      dataIndex: "userFullName",
-      key: "userFullName",
+      dataIndex: "fullName",
+      key: "fullName",
       align: "center",
     },
     {
       title: "Email",
-      dataIndex: "userEmail",
-      key: "userEmail",
+      dataIndex: "email",
+      key: "email",
       align: "center",
     },
     {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
-      align: "center",
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-      align: "center",
-    },
-    {
-      title: "City",
-      dataIndex: "city",
-      key: "city",
-      align: "center",
-    },
-    {
-      title: "Country",
-      dataIndex: "country",
-      key: "country",
-      align: "center",
-    },
-    {
-      title: "Date of birth",
-      dataIndex: "dateOfBirth",
-      key: "dateOfBirth",
-      align: "center",
-      render: (_, record) =>
-        record.dateOfBirth && dayjs("12/07/2002 10:06:06").format("DD/MM/YYYY"),
-    },
-    {
-      title: "Reputation",
-      dataIndex: "reputation",
-      key: "reputation",
+      title: "Create date",
+      dataIndex: "createDate",
+      key: "createDate",
       align: "center",
       render: (_, record) => {
-        let color = "";
-        if (record.reputation >= 8) {
-          color = "green";
-        } else if (record.reputation >= 5) {
-          color = "yellow";
-        } else {
-          color = "red";
-        }
-        return <Tag color={color}>{record.reputation}</Tag>;
+        const rawtime = dayjs(record.createdDate, "DD/MM/YYYY");
+        const formatTime = dayjs(rawtime["$d"]).format("DD/MM/YYYY");
+        return <p>{formatTime}</p>;
       },
     },
     {
@@ -242,7 +177,15 @@ const AccountManagement = (props) => {
         </Form>
       </div>
       <div className="">
-        <Table dataSource={data} columns={columns} bordered></Table>
+        <Table
+          dataSource={listAccount}
+          columns={columns}
+          bordered
+          pagination={{
+            defaultPageSize: 5,
+          }}
+          loading={loadingListAccount}
+        ></Table>
         <Drawer
           width={640}
           placement="right"
