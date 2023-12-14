@@ -32,8 +32,13 @@ const LoginPage = () => {
       localStorage.setItem("userToken", response.data.access_token);
 
       console.log("Login Successful", response.data);
+      {
+        response.data.user_kind == 2
+          ? navigate("/home")
+          : navigate("/admin/account");
+      }
 
-      navigate("/home");
+      // navigate("/home");
     } catch (error) {
       console.error("Login Failed", error);
     }
@@ -88,7 +93,12 @@ const LoginPage = () => {
           >
             <Input.Password size="large" />
           </Form.Item>
-
+          <div
+            className=" flex flex-row justify-end cursor-pointer hover:font-medium"
+            onClick={() => navigate("/forgotpassword")}
+          >
+            <p>Forgot password?</p>
+          </div>
           <Form.Item className="flex items-center justify-center w-full ">
             <Button
               type="default"
