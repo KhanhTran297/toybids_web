@@ -30,18 +30,10 @@ export default function init(routes) {
         ),
       },
       {
-        path: "productdetail",
+        path: "productdetail/:productId",
         element: (
           <GuardRoute>
             <ProductDetailPage />
-          </GuardRoute>
-        ),
-      },
-      {
-        path: "addproduct",
-        element: (
-          <GuardRoute>
-            <AddProductPage />
           </GuardRoute>
         ),
       },
@@ -69,14 +61,7 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
-      {
-        path: "checkout",
-        element: (
-          <GuardRoute>
-            <CheckOutPage />
-          </GuardRoute>
-        ),
-      },
+     
       {
         path: "userprofile",
         element: (
@@ -85,6 +70,7 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
+
       {
         path: "editprofile",
         element: (
@@ -113,6 +99,7 @@ export default function init(routes) {
           <CheckOutPage/>
         </GuardRoute>),
       }
+
     ],
   };
 

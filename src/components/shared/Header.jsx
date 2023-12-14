@@ -51,6 +51,7 @@ const Header = () => {
       </div>
 
       <div className="fixed flex flex-row items-center gap-6 right-12">
+
         {!location.pathname.includes("/searchproduct") && (
           <form onSubmit={handleSearchSubmit}>
             <div className="w-[400px] flex  flex-row gap-2 rounded-[8px] items-center bg-[#52AB98] h-10 px-2">
@@ -66,7 +67,7 @@ const Header = () => {
           </form>
         )}
 
-        <ILocalNotification fill="#ffff" />
+
 
         <button onClick={() => setShow(!show)}>
           <Avt />

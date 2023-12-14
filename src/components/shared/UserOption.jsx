@@ -9,8 +9,8 @@ export const UserOption = () => {
     navigate("/userprofile");
   };
 
-  const handleClickGuestProfile = (guestID) => {
-    navigate(`/guestprofile/${guestID}`);
+  const handleClickCreateAuction = () => {
+    navigate("/addproduct");
   };
 
   const handleLogout = () => {
@@ -23,7 +23,7 @@ export const UserOption = () => {
 
   return (
     <div
-      className="absolute right-0 top-14 mr-4 z-10 mt-2 w-34 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      className="absolute right-0 z-10 mt-2 mr-4 origin-top-right bg-white rounded-md shadow-lg top-14 w-34 ring-1 ring-black ring-opacity-5 focus:outline-none"
       role="menu"
       aria-orientation="vertical"
       aria-labelledby="menu-button"
@@ -31,7 +31,6 @@ export const UserOption = () => {
     >
       <div className="py-0.2" role="none">
         <div
-          
           className="cursor-pointer text-gray-700 rounded-md hover:bg-[#52AB98] hover:text-white block px-4  py-2 text-md"
           tabIndex="-1"
           id="menu-item-0"
@@ -40,7 +39,15 @@ export const UserOption = () => {
           User Profile
         </div>
         <div
+          className="cursor-pointer text-gray-700 rounded-md hover:bg-[#52AB98] hover:text-white block px-4  py-2 text-md"
+          tabIndex="-1"
+          id="menu-item-0"
+          onClick={handleClickCreateAuction}
+        >
+          Create Auction
+        </div>
 
+        <div
           className="cursor-pointer text-gray-700 block rounded-md hover:bg-[#52AB98] hover:text-white px-4 py-2 text-md"
           tabIndex="-1"
           id="menu-item-1"
@@ -56,20 +63,7 @@ export const UserOption = () => {
         >
           Name: A to Z
         </div> */}
-        
       </div>
     </div>
-
-    // <div className="flex-col items-start gap-[24px] p-6 rounded-[14px] fixed top-10 right-2 ">
-    //   <a className="user cursor-pointer" onClick={handleClickProfile}>
-    //     Profile
-    //   </a>
-    //   <a className="user cursor-pointer" onClick={() => handleClickGuestProfile(6991830680698880)}>
-    //     Guest Profile
-    //   </a>
-    //   <a className="user" href="#" onClick={handleLogout}>
-    //     Log out
-    //   </a>
-    // </div>
   );
 };

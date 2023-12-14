@@ -1,20 +1,18 @@
 import { Table, Tabs } from "antd";
 import React from "react";
+import { getBidHistoryById } from "../../api/bid";
+import { useQuery } from "@tanstack/react-query";
 
-const DescriptionProduct = () => {
+const DescriptionProduct = (props) => {
+  const { des, idAuction } = props;
   const onChange = (key) => {
     console.log(key);
   };
-  const descriptionContent = `
-  <p>
-    • Model height: 18cm
-    <br />• Range of movement: High
-    <br />• Number of runners: 13 runners + Decal stickers
-    <br />• Accessories included: Beam Rifle, Shield
-    <br />• Product does not include Action Base
-    <br />• Plastic components: PS, PE, ABS
-  </p>
-`;
+  const { data: bidHistory } = useQuery({
+    queryKey: ["bidHistory", idAuction],
+    queryFn: getBidHistoryById,
+    enabled: !!idAuction,
+  });
   const columns = [
     {
       title: "Bidder",
@@ -37,39 +35,32 @@ const DescriptionProduct = () => {
       key: "bidtime",
     },
   ];
-  const data = [
-    {
-      key: "1",
-      bidder: "John Brown",
-      bidamount: 32,
-      bidtime: "6 Nov 2023 at 11:38:41am",
-    },
-    {
-      key: "2",
-      bidder: "Jim Green",
-      bidamount: 111,
-      bidtime: "6 Nov 2023 at 11:38:41am ",
-    },
-    {
-      key: "3",
-      bidder: "Jim Gruuuu",
-      bidamount: 111,
-      bidtime: "6 Nov 2023 at 11:38:41am ",
-    },
-  ];
+
+  const bidHistoryData = bidHistory?.data?.content
+    ? bidHistory.data.content
+        .map((bid, index) => ({
+          key: index,
+          bidder: bid.bidder.fullName,
+          bidamount: bid.bidPrice,
+          bidtime: 1,
+        }))
+        .reverse()
+    : [];
   const items = [
     {
       key: "1",
       label: "Description",
-      children: (
-        <div dangerouslySetInnerHTML={{ __html: descriptionContent }} />
-      ),
+      children: <div dangerouslySetInnerHTML={{ __html: des }} />,
     },
     {
       key: "2",
       label: "Bid history",
       children: (
-        <Table columns={columns} dataSource={data} pagination={false} />
+        <Table
+          columns={columns}
+          dataSource={bidHistoryData}
+          pagination={false}
+        />
       ),
     },
   ];
