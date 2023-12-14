@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Modal, message } from "antd";
-import { createBidApi } from "../../api/bid";
+import { createBidApi, updateStatusApi } from "../../api/bid";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const ProductDetail = (props) => {
@@ -27,6 +27,13 @@ const ProductDetail = (props) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["detailAuction"]);
       message.success("Create bid successfully");
+    },
+  });
+  const { mutateAsync: updateStatus } = useMutation({
+    mutationKey: ["updateStatus"],
+    mutationFn: updateStatusApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["detailAuction"]);
     },
   });
   const handleBidChange = (e) => {
@@ -87,6 +94,8 @@ const ProductDetail = (props) => {
         setEventStatus("2");
       } else if (endDateTime && now > endDateTime) {
         setEventStatus("3");
+        const data = { id: idAuction, status: 2 };
+        updateStatus(data);
       } else {
         setEventStatus("4");
       }
