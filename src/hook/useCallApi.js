@@ -15,7 +15,9 @@ function UseCallApi() {
     // If required TOKEN -> Get Access Token from Cookies
     // console.log("requiredToken:", requiredToken);
     requiredToken &&
-      (fullHeader["Authorization"] = `Bearer ${getToken().access_token}`);
+      (fullHeader["Authorization"] = `Bearer ${localStorage.getItem(
+        "userToken"
+      )}`);
 
     const usedGet = () =>
       instance.get(url, {
@@ -75,7 +77,9 @@ function UseCallApi() {
     let fullHeader = { ...headers };
     // If required TOKEN -> Get Access Token from Cookies
     requiredToken &&
-      (fullHeader["Authorization"] = `Bearer ${getToken().access_token}`);
+      (fullHeader["Authorization"] = `Bearer ${localStorage.getItem(
+        "userToken"
+      )}`);
 
     const usedDelete = () =>
       instance.delete(
@@ -102,7 +106,9 @@ function UseCallApi() {
     // If required TOKEN -> Get Access Token from Cookies
     // console.log("requiredToken:", requiredToken);
     requiredToken &&
-      (fullHeader["Authorization"] = `Bearer ${getToken().access_token}`);
+      (fullHeader["Authorization"] = `Bearer ${localStorage.getItem(
+        "userToken"
+      )}`);
 
     const usedEdit = () =>
       instance.put(
@@ -137,7 +143,9 @@ function UseCallApi() {
       type === "basicAuth"
         ? (fullHeader["Authorization"] = `Basic ${credentialsBase64}`)
         : requiredToken &&
-          (fullHeader["Authorization"] = `Bearer ${getToken().access_token}`);
+          (fullHeader["Authorization"] = `Bearer ${localStorage.getItem(
+            "userToken"
+          )}`);
     }
 
     const usedPost = () =>
@@ -173,7 +181,9 @@ function UseCallApi() {
       type === "basicAuth"
         ? (fullHeader["Authorization"] = `Basic ${credentialsBase64}`)
         : requiredToken &&
-          (fullHeader["Authorization"] = `Bearer ${getToken().access_token}`);
+          (fullHeader["Authorization"] = `Bearer ${localStorage.getItem(
+            "userToken"
+          )}`);
     }
 
     const usedPost = () =>
