@@ -1,12 +1,10 @@
-
-import React, { useState } from "react";
+import { useState } from "react";
 import { ILocalSearch } from "../svg/search";
 import Avt from "./Avt";
-import { ILocalNotification } from "../svg/notification";
 import useClickOutSide from "../../hook/useClickOutSide";
 import { UserOption } from "./UserOption";
 import Logo from "../../assets/logo.png";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Header = () => {
   const { show, setShow, nodeRef } = useClickOutSide();
@@ -36,7 +34,7 @@ const Header = () => {
       </div>
 
       <div className="flex flex-row items-center h-full ">
-      <button
+        <button
           className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg"
           onClick={() => navigate("/home")}
         >
@@ -48,10 +46,15 @@ const Header = () => {
         >
           About Us
         </button>
+        <button
+          className="flex justify-center px-6 text-white hover:bg-[#1f5361] h-full items-center text-lg"
+          onClick={() => navigate("/history")}
+        >
+          History
+        </button>
       </div>
 
       <div className="fixed flex flex-row items-center gap-6 right-12">
-
         {!location.pathname.includes("/searchproduct") && (
           <form onSubmit={handleSearchSubmit}>
             <div className="w-[400px] flex  flex-row gap-2 rounded-[8px] items-center bg-[#52AB98] h-10 px-2">
@@ -66,8 +69,6 @@ const Header = () => {
             </div>
           </form>
         )}
-
-
 
         <button onClick={() => setShow(!show)}>
           <Avt />
