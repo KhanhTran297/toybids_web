@@ -4,8 +4,6 @@ import AddProductPage from "../pages/main/AddProductPage";
 import TransactionHistoryPage from "../pages/main/TransactionHistoryPage";
 import HomePage from "../pages/main/HomePage";
 import ProductDetailPage from "../pages/main/ProductDetailPage";
-
-
 import UserProfilePage from "../pages/main/UserProfilePage";
 import EditProfilePage from "../pages/main/EditProfilePage";
 import GuestProfilePage from "../pages/main/GuestProfilePage";
@@ -13,6 +11,7 @@ import SearchProductPage from "../pages/main/SearchProductPage";
 import CheckOutPage from "../pages/main/CheckoutPage";
 
 import GuardRoute from "./GuardRoute";
+import HistoryPage from "../pages/main/HistoryPage";
 
 // Xem cấu trúc route ở https://reactrouter.com/en/main/routers/create-browser-router#routes
 export default function init(routes) {
@@ -61,7 +60,7 @@ export default function init(routes) {
           </GuardRoute>
         ),
       },
-     
+
       {
         path: "userprofile",
         element: (
@@ -80,26 +79,37 @@ export default function init(routes) {
         ),
       },
       {
+        path: "history",
+        element: (
+          <GuardRoute>
+            <HistoryPage />
+          </GuardRoute>
+        ),
+      },
+      {
         path: "guestprofile/:guestID",
         element: (
           <GuardRoute>
-            <GuestProfilePage/>
+            <GuestProfilePage />
           </GuardRoute>
         ),
       },
       {
         path: "searchproduct/:productName",
-        element: (<GuardRoute>
-          <SearchProductPage/>
-        </GuardRoute>),
+        element: (
+          <GuardRoute>
+            <SearchProductPage />
+          </GuardRoute>
+        ),
       },
       {
-        path: "checkout",
-        element: (<GuardRoute>
-          <CheckOutPage/>
-        </GuardRoute>),
-      }
-
+        path: "checkout/:auctionId",
+        element: (
+          <GuardRoute>
+            <CheckOutPage />
+          </GuardRoute>
+        ),
+      },
     ],
   };
 
