@@ -5,7 +5,7 @@ import visa from "../../assets/visa.png";
 import mastercard from "../../assets/mastercard.png";
 import { Radio, message } from "antd";
 import { useMutation } from "@tanstack/react-query";
-import { createTransactionApi } from "../../api/transaction";
+import { createTransactionApi, sendMailApi } from "../../api/transaction";
 import { createpaymentApi } from "../../api/payment";
 import { redirect, useNavigate } from "react-router-dom";
 
@@ -24,6 +24,13 @@ const CheckOut = (props) => {
     mutationFn: createpaymentApi,
     onSuccess: (res) => {
       message.success("Create payment succeessfully");
+    },
+  });
+  const { mutateAsync: sendMail } = useMutation({
+    mutationKey: ["sendMail"],
+    mutationFn: sendMailApi,
+    onSuccess: (res) => {
+      message.success("sendMail succeessfully");
     },
   });
   const onChange = (e) => {
@@ -47,12 +54,16 @@ const CheckOut = (props) => {
     };
     createTransaction(data).then((res) => {
       const dataPayment = {
-        transactionId: res?.data?.auction?.id,
+        transactionId: res?.data?.id,
         paymentPrice: totalPrice,
         bankCode: bankCode,
       };
+      const datamail = {
+        transactionId: res?.data?.id,
+        paymentPrice: totalPrice,
+      };
       createPayment(dataPayment).then((res) => {
-        console.log(res);
+        sendMail(datamail);
         window.location.href = res.data;
       });
     });
